@@ -13,10 +13,21 @@ hanoi n a b c = hanoi (n-1) a c b ++ [(a,b)] ++ hanoi (n-1) c b a
 hanoiIO n = mapM_ f $ hanoi n 1 2 3 where
   f (x,y) = putStrLn $ "Move " ++ show x ++ " to " ++ show y
 
--- Trying Reve's puzzle
+
+{-This is the classic Reve's puzzle as presented in [1]. 
+Initially, the Reve placed eight pieces of cheese of graduating sizes on one of four stools. 
+The Reve challenged his fellow pilgrims to move them all to another stool by moving them one at a time,
+without ever putting a larger cheese on top of a smaller, and in the least number of moves possible. 
+After completing that task, the pilgrim was expected to move nine cheeses, then ten, and so on, 
+until 21 cheeses were finally moved from the starting stool to another stool, in the least number of moves possible. 
+Once a pilgrim was successful, the Reve promised to give him "a draught of the best that our good host can provide". 
+[1] H. E. Dudeney, The Canterbury Puzzles, Mineola, New York: Dover Publications, 2002.
+-}
+
+-- Trying Reve's puzzle (This function implementation is not the minimum possible moves)
 reve :: Integer -> a -> a -> a -> a -> [(a,a)]
 reve 0 _ _ _ _ = []
-reve n a b c d = reve (n-1) a c d c ++ [(a,d)] ++ reve (n-1) c d a d 
+reve n a b c d = reve (n-1) a b d c ++ [(a,d)] ++ reve (n-1) c a b d 
 
 
 -- Output of rave
